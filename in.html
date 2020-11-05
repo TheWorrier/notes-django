@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Home</title>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $("#usercheck").hide();
+                    $("#passcheck").hide();
+                    $("#conpasscheck").hide();
+                    var user_err = true;
+                    var pass_err = true;
+                    var conpass_err = true;
+
+                    $("#username").keyup(function() {
+                        username_check();
+                    })
+
+                    function username_check() {
+                        var user_val = $("#username").val();
+                        if (user_val.length == '') {
+                            $("#usercheck").show();
+                            $("#usercheck").html("please fill the first name");
+                            $("#usercheck").focus()
+                            $("#usercheck").css("color", "red")
+                            user_err = false;
+                            return false;
+                        } else {
+                            $("#usercheck").hide();
+                        }
+                    }
+                    $("#password").keyup(function() {
+                        password_check();
+                    })
+
+                    function password_check() {
+                        var upass_val = $("#password").val();
+                        if (upass_val.length == '') {
+                            $("#passcheck").show();
+                            $("#passcheck").html("Password can not be empty");
+                            $("#passcheck").focus()
+                            $("#passcheck").css("color", "red")
+                            upass_val = false;
+                            return false;
+                        } else {
+                            $("#passcheck").hide();
+                        }
+                        if (upass_val.length < 3) || (upass_val.length > 20) {
+                            $("#passcheck").show();
+                            $("#passcheck").html("password length must be betweek 3 to 20");
+                            $("#passcheck").focus()
+                            $("#passcheck").css("color", "red")
+                            upass_val = false;
+                            return false;
+                        } else {
+                            $("#passcheck").hide();
+                        }
+                    }
+                    $("#password1").keyup(function() {
+                        conpassword_check();
+                    })
+
+                    function conpassword_check() {
+                        var upass_val = $("#password1").val();
+                        var conupass_val = $("#conpasscheck").val();
+                        if (upass_val != conupass_val) {
+                            $("#conpasscheck").show();
+                            $("#conpasscheck").html("Password can not be empty");
+                            $("#conpasscheck").focus()
+                            $("#conpasscheck").css("color", "red")
+                            conupass_val = false;
+                            return false;
+                        } else {
+                            $("#conpasscheck").hide();
+                        }
+                    }
+                    $("#submitbtn").click(function() {
+                        user_err = true;
+                        pass_err = true;
+                        conpass_err = true;
+                        username_check();
+                        password_check()
+                        conpassword_check();
+                        if ((user_err == true) && (pass_err == true) && (conpass_err == true)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
+                }
+    </script>
+</head>
+
+<body>
+
+    <div class="container py-5 my-5">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username: </label>
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter email">
+                <p id="usercheck"></p>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password: </label>
+                <input type="password" class="form-control" name='password' id="Password" placeholder="Password">
+                <p id="passcheck"></p>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Con. Password: </label>
+                <input type="password" class="form-control" name='password1' id="password1" placeholder="Password">
+                <p id="conpasscheck"></p>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
